@@ -1,12 +1,12 @@
 FROM n8nio/n8n:latest
 
-# Run as the node user (default in this image)
+# n8n runs as user "node" in this image
 USER node
 
-# Tell n8n where to look for custom nodes
-ENV N8N_CUSTOM_EXTENSIONS=/home/node/.n8n/custom
+# Standard place for custom nodes in n8n docker
+ENV N8N_CUSTOM_EXTENSIONS=/data/custom
 
-# Create custom extensions folder and install the Substack node there
-RUN mkdir -p /home/node/.n8n/custom \
-    && cd /home/node/.n8n/custom \
+# Create the custom folder and install the Substack node there
+RUN mkdir -p /data/custom \
+    && cd /data/custom \
     && npm install n8n-nodes-substack
